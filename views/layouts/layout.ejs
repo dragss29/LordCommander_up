@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - Lord Commander</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #2563eb, #ffffff);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <%- include('../partials/header') %>
+    <main class="flex-grow mb-16">
+        <%- body %>
+    </main>
+    <%- include('../partials/footer') %>
+</body>
+</html>

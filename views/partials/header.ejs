@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - Lord Commander</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to bottom, #2563eb, #ffffff);
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold">Lord Commander</h1>
+      <h2 class="text-2xl"><%= translations.description %></h2>
+    </div>
+    <nav class="mt-4">
+      <ul class="flex justify-center space-x-4">
+        <li><a href="/" class="hover:underline"><%= translations.welcome %></a></li>
+        <li><a href="/warhammer40k" class="hover:underline"><%= translations.warhammer_40k %></a></li>
+        <li><a href="/warhammer" class="hover:underline"><%= translations.warhammer %></a></li>
+        <li><a href="/about" class="hover:underline"><%= translations.about %></a></li>
+        <li><a href="/army_management" class="hover:underline"><%= translations.army_management %></a></li>
+        <li><a href="/contact" class="hover:underline"><%= translations.contact %></a></li>
+        <% if (locals.user) { %>
+          <li><a href="/profile" class="hover:underline"><%= translations.profile %></a></li>
+          <li><a href="/auth/logout" class="hover:underline"><%= translations.logout %></a></li>
+        <% } else { %>
+          <li><a href="/auth/login" class="hover:underline"><%= translations.login %></a></li>
+          <li><a href="/auth/register" class="hover:underline"><%= translations.register %></a></li>
+        <% } %>
+      </ul>
+      <div class="flex justify-center mt-2">
+        <a href="?lang=en" class="px-2">🇬🇧</a>
+        <a href="?lang=fr" class="px-2">🇫🇷</a>
+        <a href="?lang=it" class="px-2">🇮🇹</a>
+      </div>
+    </nav>
+  </header>  <main class="flex-grow mb-16">

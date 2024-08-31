@@ -12,10 +12,13 @@ router.get('/', (req, res) => {
   const lang = req.query.lang || 'fr';
   res.locals.locale = lang;
   res.locals.translations = loadTranslations(lang);
-  res.render('pages/home', { title: res.locals.translations.welcome });
+  res.render('pages/home', { 
+    title: res.locals.translations.welcome,
+    user: req.session.user // Ajoutez cette ligne
+  });
 });
 
-router.get('/warhammer40k', (req, ress) => {
+router.get('/warhammer40k', (req, res) => {
   const lang = req.query.lang || 'fr';
   const translations = loadTranslations(lang);
   res.render('pages/warhammer40k', { 
@@ -23,7 +26,7 @@ router.get('/warhammer40k', (req, ress) => {
     translations,
     locale: lang,
     game: 'Warhammer 40k',
-    user: req.session.user // Assurez-vous que cette ligne est présente si vous utilisez des sessions pour l'authentification
+    user: req.session && req.session.user ? req.session.user : null // Modification ici
   });
 });
 
@@ -35,7 +38,7 @@ router.get('/warhammer', (req, res) => {
     translations,
     locale: lang,
     game: 'Warhammer',
-    user: req.session.user // Assurez-vous que cette ligne est présente si vous utilisez des sessions pour l'authentification
+    user: req.session && req.session.user ? req.session.user : null // Modification ici
   });
 });
 

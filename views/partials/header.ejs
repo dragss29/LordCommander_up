@@ -27,10 +27,10 @@
         <li><a href="/contact" class="hover:underline"><%= translations.contact %></a></li>
         <% if (locals.user) { %>
           <li><a href="/profile" class="hover:underline"><%= translations.profile %></a></li>
-          <li><a href="/auth/logout" class="hover:underline"><%= translations.logout %></a></li>
+          <li><a href="/logout" class="hover:underline"><%= translations.logout %></a></li>
         <% } else { %>
-          <li><a href="/auth/login" class="hover:underline"><%= translations.login %></a></li>
-          <li><a href="/auth/register" class="hover:underline"><%= translations.register %></a></li>
+          <li><a href="/login" class="hover:underline"><%= translations.login %></a></li>
+          <li><a href="/register" class="hover:underline"><%= translations.register %></a></li>
         <% } %>
       </ul>
       <div class="flex justify-center mt-2">

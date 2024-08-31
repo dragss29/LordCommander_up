@@ -1,24 +1,24 @@
 const bcrypt = require('bcrypt');
-const db = require('../config/database');
+const { pool } = require('../config/database');
 
 exports.login = async (req, res) => {
   const { username, password } = req.body;
   try {
-    const [rows] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
+    const [rows] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
     if (rows.length > 0) {
       const match = await bcrypt.compare(password, rows[0].password);
       if (match) {
         req.session.userId = rows[0].id;
         res.redirect('/');
       } else {
-        res.render('pages/login', { error: 'Invalid username or password' });
+        res.render('pages/login', { error: 'Nom d\'utilisateur ou mot de passe incorrect' });
       }
     } else {
-      res.render('pages/login', { error: 'Invalid username or password' });
+      res.render('pages/login', { error: 'Nom d\'utilisateur ou mot de passe incorrect' });
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Server error');
+    console.error('Erreur lors de la connexion:', error);
+    res.status(500).send('Erreur serveur');
   }
 };
 

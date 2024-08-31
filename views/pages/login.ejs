@@ -1,26 +1,19 @@
 <div class="container mx-auto mt-20 px-4">
   <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-8"><%= translations.login %></h2>
   <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
-    <form action="/login" method="POST" class="space-y-6">
-      <% if (locals.error) { %>
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-          <span class="block sm:inline"><%= error %></span>
-        </div>
-      <% } %>
+    <form action="/login" method="POST" class="space-y-4">
       <div>
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="username"><%= translations.username %></label>
-        <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" type="text" name="username" id="username" required>
+        <label for="username" class="block text-sm font-medium text-gray-700"><%= translations.username %></label>
+        <input type="text" name="username" id="username" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
       </div>
       <div>
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password"><%= translations.password %></label>
-        <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent" type="password" name="password" id="password" required>
+        <label for="password" class="block text-sm font-medium text-gray-700"><%= translations.password %></label>
+        <input type="password" name="password" id="password" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
       </div>
-      <div class="mb-4">
-        <button class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300" type="submit"><%= translations.login %></button>
-      </div>
+      <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"><%= translations.login %></button>
     </form>
     <div class="mt-4 text-center">
-      <p class="text-sm text-gray-600"><%= translations.no_account %> <a href="/auth/register" class="text-blue-600 hover:underline"><%= translations.register %></a></p>
+      <p class="text-sm text-gray-600"><%= translations.no_account %> <a href="/register" class="text-blue-600 hover:underline"><%= translations.register %></a></p>
     </div>
   </div>
 </div>

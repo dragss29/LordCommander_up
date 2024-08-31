@@ -1,26 +1,17 @@
 # Activer le moteur de réécriture
 RewriteEngine On
-# Préserver les paramètres `lang` lors des réécritures d'URL
-# Préserver les paramètres `lang` lors des réécritures d'URL
-# Si le paramètre lang existe dans l'URL, il doit être transmis avec les autres paramètres
-RewriteCond %{QUERY_STRING} (^|&)lang=([^&]+) [NC]
-# Rediriger la racine du site vers la page d'accueil, en préservant `lang`
-# Rediriger la racine du site vers la page d'accueil, en préservant `lang`
-RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^ index.php?page=home [QSA,L]
-# Rediriger les URLs de type /page vers index.php?page=page, en préservant `lang`
-# Rediriger les URLs de type /page vers index.php?page=page, en préservant `lang`
+RewriteBase /
+
+# Rediriger toutes les requêtes vers le fichier principal de votre application Node.js
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# Exclure les fichiers d'images des règles de réécriture
-RewriteCond %{REQUEST_FILENAME} !\.(jpg|jpeg|png|gif|svg|ico)$ [NC]
+RewriteRule ^(.*)$ app.js [L]
+
+# Définir le type MIME pour les fichiers JavaScript
 AddType application/javascript .js
 
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.php$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.php [L]
-</IfModule>
+# Autoriser l'accès aux fichiers statiques
+<FilesMatch "\.(jpg|jpeg|png|gif|svg|ico|css|js)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
